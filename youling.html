@@ -1,0 +1,209 @@
+<html>
+<head>
+    <title>幽灵按钮</title>
+    <style type="text/css">
+        *{margin:0;padding:0;}
+        body{background:#333;}
+        .box{
+            width:1000px;
+            height:280px;
+            margin:50px auto;
+
+        }
+        .box .link {
+            width:205px;
+            height:280px;
+            margin:30px 50px;
+            float:left;
+            position:relative;
+        }
+        .link .icon{
+            display:inline-block;
+            transition:all 0.5s linear;
+            -webkit-transition:all 0.5s linear;
+            width:100%;
+            height:190px;
+        }
+        .link-miss .icon{
+            background:url("mission.png") no-repeat center center;
+
+        }
+        .link-play .icon{
+            background:url("play.png") no-repeat center center;
+        }
+        .link-touch .icon{
+            background:url("touch.png") no-repeat center center;
+        }
+        .link .icon:hover{
+            transform:rotate(360deg) scale(1.2);
+            -webkit-transform:rotate(360deg) scale(1.2);
+        }
+        .button{
+            display:block;
+            width:158px;
+            height:50px;
+            line-height:50px;
+            color:#2DCB70;
+            text-decoration:none;
+            border:1px solid white;
+            font-weight:bolder;
+            padding-left:20px;
+            margin:0 auto;
+            opacity:0.7;
+            background:url("allow.png") no-repeat 130px center;
+            position:relative;
+            transition: 0.4s ease;
+            -webkit-transition: 0.4s ease;
+
+        }
+        .button:hover{
+            opacity:1;
+            background-position:140px center;
+        }
+        .button .line{
+            background-color:white;
+            position:absolute;
+            display:block;
+            transition: 0.4s ease;
+            -webkit-transition: 0.4s ease;
+            opacity:0.5;
+        }
+        .button .line-top{
+
+            height:2px;
+            width:0;
+            top:-1px;
+            left:-110%;
+
+
+        }
+        .button:hover .line-top{
+            width:100%;
+
+            left:0;
+
+        }
+        .button .line-bottom{
+
+            height:2px;
+            width:0;
+            top:50px;
+            right:-110%;
+        }
+        .button:hover .line-bottom{
+            width:100%;
+            right:0;
+        }
+        .button .line-left{
+
+            height:0;
+            width:2px;
+            left:-1px;
+            bottom:-110%;
+        }
+        .button:hover .line-left{
+            height:100%;
+            bottom:0;
+        }
+        .button .line-right{
+
+            height:0;
+            width:2px;
+            right:-2px;
+            top:-110%;
+        }
+        .button:hover .line-right{
+            height:100%;
+            top:0px;
+        }
+        #tips{
+            position:absolute;
+            width:200px;
+            height:40px;
+            line-height:40px;
+            padding:0 10px;
+            background:#2DCB70;
+            top:170px;
+            margin:0 auto;
+            text-align:center;
+            left:235px;
+            color:white;
+            font-weight:bolder;
+            opacity:0;
+            border-radius:20px;
+
+        }
+        #tips span{
+            position:absolute;
+            width:0;
+            height:0;
+            border:7px solid transparent;
+            border-top-color:#2DCB70;
+            left:50%;
+            margin-left:-3px;
+            bottom:-14px;
+
+        }
+
+
+    </style>
+    <script type="text/javascript" src="jquery-1.11.3.js"></script>
+
+</head>
+<body>
+<div class="box">
+    <div class="link link-miss">
+        <span class="icon"></span>
+        <a href="#" class="button" data-title="miss the news">
+            <span class="line line-top"></span>
+            <span class="line line-left"></span>
+            <span class="line line-right"></span>
+            <span class="line line-bottom"></span>
+            MISSION
+        </a>
+    </div>
+    <div class="link link-play">
+        <span class="icon"></span>
+
+        <a href="#" class="button" data-title="play together">
+            <span class="line line-top"></span>
+            <span class="line line-left"></span>
+            <span class="line line-right"></span>
+            <span class="line line-bottom"></span>
+            PLAY
+        </a>
+    </div>
+    <div class="link link-touch">
+        <span class="icon"></span>
+        <a href="#" class="button" data-title="toucher us">
+            <span class="line line-top"></span>
+            <span class="line line-left"></span>
+            <span class="line line-right"></span>
+            <span class="line line-bottom"></span>
+            TOUCH
+        </a>
+    </div>
+    <div id="tips">
+        <em></em>
+        <span></span>
+    </div>
+</div>
+<script>
+    $(document).ready(function (){
+       $(".link .button").hover(function (){
+         var title=$(this).attr("data-title");
+           $("#tips em").text(title);
+           var pos=$(this).offset().left;
+           var dis=($("#tips").outerWidth()-$(".button").outerWidth())/2;
+           var f=pos-dis;
+           $("#tips").css({"left":f+"px"}).animate({"opacity":1,"top":210},300);
+
+
+       },function(){
+           $("#tips").animate({"opacity":0,"top":170},300);
+       }) ;
+    });
+</script>
+
+</body>
+</html>
